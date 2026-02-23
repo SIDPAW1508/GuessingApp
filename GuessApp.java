@@ -1,14 +1,9 @@
 
 import java.util.Random;
 import java.util.Scanner;
-/**
- * Use Case 3: Hint Generation
- * This class is responsible for:
- * generating hints based on the number of incorrect attempts made by the player.
- */
 
 public class GuessApp{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidGuessException {
         System.out.println("Welcome to the Guessing Game!");
         GameConfig config = new GameConfig();
         config.showRules();
@@ -16,8 +11,8 @@ public class GuessApp{
         int attempts = 0;
         while (attempts < config.getMaxAttempts()){
             System.out.print("Enter your guess: ");
-            int userGuess = scanner.nextInt();
-            String result = GuessValidator.validateGuess(userGuess, config.getTargetNumber());
+            int guess = ValidationService.validateInput(scanner.nextLine());
+            String result = GuessValidator.validateGuess(guess, config.getTargetNumber());
             System.out.println(result);
             if (result.equals("CORRECT!")){
                 break;

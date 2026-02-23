@@ -1,23 +1,11 @@
-/**
- * Use Case 1: Game Initialization
- * This class is responible for:
- * -Setting game boundaries
- * Generating a random target number
- * -Displaying game rules
- * 
- * Demonstrates:
- * Encapsulation 
- * Constructor Initialization
- * Random number generation
- */
+
 import java.util.Random;
 import java.util.Scanner;
-
-
-/*Use Case 2: User Guess Submission
-This class is responsible for:
-Comparing the user's guess to the target number*
-It does not handle input or output*/
+/**
+ * Use Case 3: Hint Generation
+ * This class is responsible for:
+ * generating hints based on the number of incorrect attempts made by the player.
+ */
 
 public class GuessApp{
     public static void main(String[] args) {
@@ -33,6 +21,11 @@ public class GuessApp{
             System.out.println(result);
             if (result.equals("CORRECT!")){
                 break;
+            }
+            // Provide a hint after each incorrect guess, up to 2 hints
+            if (attempts < 2) {
+                String hint = HintGeneration.generateHint(config.getTargetNumber(), attempts + 1);
+                System.out.println(hint);
             }
             attempts++;
         }
